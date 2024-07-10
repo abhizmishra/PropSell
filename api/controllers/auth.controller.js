@@ -2,6 +2,7 @@ import bcryptjs from "bcryptjs";
 
 import User from "../models/user.model.js";
 import { errorHandler } from "../utils/error.js";
+import jwt from "jsonwebtoken"
 
 export const signup = async (req, res, next) => {
   const { username, email, password } = req.body;
@@ -23,26 +24,35 @@ export const signin = async (req, res, next) => {
   const { email, password } = req.body;
   try {
     const validUser = await User.findOne({ email });
+
+    //in validUser json document date will be store with whole information of the matched email field
+
     if (!validUser) return next(errorHandler(404, "User not found!"));
+    //if  no email found then it will return null it means not user found.
 
     const validPassword = bcryptjs.compareSync(password, validUser.password);
+    //                                          body pass / it comes from validUser which is prev stored in valid user using findone
     if (!validPassword)
       return next(errorHandler(401, "Password is incorrect!"));
 
     const token = jwt.sign(
       {
         id: validUser._id,
+        //for creating a session which give access to fetch the data for browser so we provide unique user id which is already available in mongo (it always require unique field )
       },
       process.env.JWT_SECRET
+      //it is a random string which can be provide mannualy 
     );
 
     const { password: pass, ...rest } = validUser._doc;
+    //rest is a object which will contain all the data except password
+    //it will re-destructure the validuser doc by removing the passowrd field
 
     res
-      .cookie('access_token', token, { httpOnly: true })
+      .cookie("access_token", token, { httpOnly: true })
+      //it will save the token to browser
       .status(200)
       .json(rest);
-    
   } catch (error) {
     next(error);
   }
