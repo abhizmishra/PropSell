@@ -6,6 +6,7 @@ import {
   signInFailure,
   signInSuccess,
 } from "../redux/user/user.slice";
+import GAuth from "../components/GAuth.jsx";
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
@@ -30,7 +31,7 @@ export default function SignIn() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      console.log(data)
+      console.log(data);
       if (data.success === false) {
         dispatch(signInFailure(data.message));
 
@@ -61,13 +62,14 @@ export default function SignIn() {
           id="password"
           onChange={handleChange}
         />
-        
+
         <button
           disabled={loading}
           className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
         >
           {loading ? "Loading..." : "Sign In"}
         </button>
+        <GAuth />
       </form>
       <div className="flex gap-2 mt-5">
         <p> {`Don't  have an account?`} </p>
