@@ -1,25 +1,18 @@
-import React from "react";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { app } from "../firebase.js";
-import { useDispatch } from 'react-redux';
-import {useNavigate} from 'react-router-dom'
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import { app } from "../firebase";
+import { useDispatch } from "react-redux";
+import { signInSuccess } from "../redux/user/user.slice.js";
+import { useNavigate } from "react-router-dom";
 
-export const GAuth = () => {
-
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-
-  
+export default function GAuth() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleGoogleClick = async () => {
     try {
       const provider = new GoogleAuthProvider();
-      // Create a new instance of the GoogleAuthProvider for Google sign-in authentication
-
       const auth = getAuth(app);
-      // Initialize the Firebase authentication instance using the provided app which has come from firebse.js file
 
       const result = await signInWithPopup(auth, provider);
-      // Use a popup window to sign in the user with their Google account and await the result
 
       const res = await fetch("/api/auth/google", {
         method: "POST",
@@ -32,23 +25,23 @@ export const GAuth = () => {
           photo: result.user.photoURL,
         }),
       });
+      console.log(result.user.photoURL);
       const data = await res.json();
+      console.log(data)
       dispatch(signInSuccess(data));
-      navigate('/')
+      
+      navigate("/");
     } catch (error) {
-      console.log("Could not sign in with google", error);
+      console.log("could not sign in with google", error);
     }
   };
   return (
     <button
-      type="button"
       onClick={handleGoogleClick}
-      className="bg-red-800 uppercase p-3 text-white rounded-lg hover:opacity-90
-    "
+      type="button"
+      className="bg-red-700 text-white p-3 rounded-lg uppercase hover:opacity-95"
     >
-      Continue with Google
+      Continue with google
     </button>
   );
-};
-
-export default GAuth;
+}
