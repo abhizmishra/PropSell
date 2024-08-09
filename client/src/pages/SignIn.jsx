@@ -5,7 +5,7 @@ import {
   signInStart,
   signInFailure,
   signInSuccess,
-} from "../redux/user/user.slice";
+} from "../redux/user/userSlice.js";
 import GAuth from "../components/GAuth.jsx";
 
 export default function SignIn() {

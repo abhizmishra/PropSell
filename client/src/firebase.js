@@ -1,3 +1,4 @@
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -5,12 +6,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyB6Fckbt7g4PUxxLbtNFBzP_dZ0WtwY4pE",
-  authDomain: "newad-52c7c.firebaseapp.com",
-  projectId: "newad-52c7c",
-  storageBucket: "newad-52c7c.appspot.com",
-  messagingSenderId: "928737973564",
-  appId: "1:928737973564:web:8d91c3d856a1ce55ebfa39",
+  apiKey: import.meta.env.VITE_FIREBASE_AUTH_API_KEY,
+  authDomain: "propsell-25e5c.firebaseapp.com",
+  projectId: "propsell-25e5c",
+  storageBucket: "propsell-25e5c.appspot.com",
+  messagingSenderId: "768671738927",
+  appId: "1:768671738927:web:4f317799cbc0dd568feada",
 };
 
 // Initialize Firebase
