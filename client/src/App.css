@@ -1,0 +1,15 @@
+:root {
+  --primarybg: #200238;
+  --secondarybg: #f0eaf7;
+  --spancolor:
+}
+
+.dark-theme {
+
+  background-color: var(--primarybg);
+
+}
+
+.light-theme {
+  background-color: var(--secondarybg);
+}
