@@ -1,43 +1,32 @@
-import express from "express";
+import express, { json } from "express"
 import mongoose from "mongoose";
-import dotenv from "dotenv";
+import dotenv from "dotenv"
 import userRouter from "./routes/user.route.js";
-import authRouter from "./routes/auth.route.js";
-import listingRouter from "./routes/listing.route.js";
-import cookieParser from "cookie-parser";
-import path from "path";
+import authRouter from "./routes/auth.route.js"
 dotenv.config();
+import cookieParser from "cookie-parser";
 
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => {
-    console.log("Connected to MongoDB!");
+    console.log("MongoDb  Connected Successfully !!!");
   })
   .catch((err) => {
-    console.log(err);
+    console.log("MongoDb  Connection Failed !!", err);
   });
 
-const __dirname = path.resolve();
-
 const app = express();
-
 app.use(express.json());
-
 app.use(cookieParser());
 
 app.listen(3000, () => {
-  console.log("Server is running on port 3000!");
+  console.log("server is listing on port no 3000");
 });
+// app.use method allows us to use the created router in diffrent folder which makes parents file clean also we can create diff routes for diff usecase
 
-app.use("/api/user", userRouter);
+
+app.use("api/user", userRouter);
 app.use("/api/auth", authRouter);
-app.use("/api/listing", listingRouter);
-
-app.use(express.static(path.join(__dirname, "/client/dist")));
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
-});
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
