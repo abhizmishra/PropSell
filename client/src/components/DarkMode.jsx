@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../App.css";
 import { FaMoon ,FaSun} from "react-icons/fa";
 
-function DarkMode() {
+export function DarkMode() {
   const [theme, setTheme] = useState("light-theme");
   const [dark,setDark] = useState(true)
 
@@ -35,4 +35,3 @@ function DarkMode() {
   );
 }
 
-export default DarkMode;
