@@ -3,13 +3,18 @@ import { Link } from 'react-router-dom';
 import {FaSearch} from "react-icons/fa"
 import { useSelector } from 'react-redux';
 import DarkMode from './DarkMode';
+import logo from "../assets/PropSellLogo.png";
 
 const Header = () => {
-const {currentUser} = useSelector((state) => state.user)
-console.log(currentUser)
+  const { currentUser } = useSelector((state) => state.user);
+  console.log(currentUser);
   return (
     <header className="bg-slate-200 shadow-md">
       <div className="flex justify-evenly items-center max-w-6xl mx-auto p-3">
+        <Link to="">
+          <img className="rounded-[70%] sm:h-2/4 sm:w-40 h-12 w-auto
+           " src={logo} alt="propsell" />
+        </Link>
         <Link to="/">
           <h1 className="font-bold text-sm sm:text-xl flex flex-wrap">
             <span className="text-slate-500">Prop</span>
@@ -49,13 +54,12 @@ console.log(currentUser)
             )}
           </Link>
           <li>
-            <DarkMode/>
+            <DarkMode />
           </li>
         </ul>
-       
       </div>
     </header>
   );
-}
+};
 
 export default Header
