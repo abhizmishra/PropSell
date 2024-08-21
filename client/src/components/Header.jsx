@@ -1,10 +1,14 @@
-import { FaSearch } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import React from 'react'
+import { Link } from 'react-router-dom';
+import {FaSearch} from "react-icons/fa"
+import { useSelector } from 'react-redux';
+import DarkMode from './DarkMode';
+import logo from "../assets/PropSellLogo.png";
 
-export default function Header() {
+const Header = () => {
   const { currentUser } = useSelector((state) => state.user);
+  console.log(currentUser);
+
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
   const handleSubmit = (e) => {
@@ -14,21 +18,29 @@ export default function Header() {
     const searchQuery = urlParams.toString();
     navigate(`/search?${searchQuery}`);
   };
+    useEffect(() => {
+      const urlParams = new URLSearchParams(location.search);
+      const searchTermFromUrl = urlParams.get("searchTerm");
+      if (searchTermFromUrl) {
+        setSearchTerm(searchTermFromUrl);
+      }
+    }, [location.search]);
 
-  useEffect(() => {
-    const urlParams = new URLSearchParams(location.search);
-    const searchTermFromUrl = urlParams.get("searchTerm");
-    if (searchTermFromUrl) {
-      setSearchTerm(searchTermFromUrl);
-    }
-  }, [location.search]);
   return (
     <header className="bg-slate-200 shadow-md">
-      <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
+      <div className="flex justify-evenly items-center max-w-6xl mx-auto p-3">
+        <Link to="">
+          <img
+            className="rounded-[70%] sm:h-2/4 sm:w-40 h-12 w-auto
+           "
+            src={logo}
+            alt="propsell"
+          />
+        </Link>
         <Link to="/">
           <h1 className="font-bold text-sm sm:text-xl flex flex-wrap">
-            <span className="text-slate-500">Sahand</span>
-            <span className="text-slate-700">Estate</span>
+            <span className="text-slate-500">Prop</span>
+            <span className="text-slate-700">Sell</span>
           </h1>
         </Link>
         <form
@@ -60,16 +72,21 @@ export default function Header() {
           <Link to="/profile">
             {currentUser ? (
               <img
-                className="rounded-full h-7 w-7 object-cover"
                 src={currentUser.avatar}
+                className="h-7 w-7 rounded-full"
                 alt="profile"
               />
             ) : (
-              <li className=" text-slate-700 hover:underline"> Sign in</li>
+              <li className=" text-slate-700 hover:underline">Sign In</li>
             )}
           </Link>
+          <li>
+            <DarkMode />
+          </li>
         </ul>
       </div>
     </header>
   );
-}
+};
+
+export default Header
