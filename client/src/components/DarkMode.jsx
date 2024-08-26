@@ -26,9 +26,9 @@ export function DarkMode() {
     >
       <button onClick={toggleDarkMode}>
         {theme === "dark-theme" ? (
-          <FaSun className="h-6 w-6" />
+          <FaSun className="h-6 w-6 sm:h-8 sm:w-8 " />
         ) : (
-          <FaMoon className="h-6 w-6" />
+          <FaMoon className="h-6 w-6 sm:h-8 sm:w-8 " />
         )}
       </button>
     </div>

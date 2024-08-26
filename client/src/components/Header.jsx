@@ -27,7 +27,7 @@ export default function Header() {
     <header className="bg-slate-200 shadow-md">
       <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
         <Link to="/">
-          <h1 className="font-bold text-sm sm:text-xl flex flex-wrap">
+          <h1 className="font-bold text-sm sm:text-2xl flex flex-wrap">
             <span className="text-slate-500">Prop</span>
             <span className="text-slate-700">Sell</span>
           </h1>
@@ -47,21 +47,21 @@ export default function Header() {
             <FaSearch className="text-slate-600" />
           </button>
         </form>
-        <ul className="flex gap-4">
+        <ul className="flex gap-4 sm:text-2xl font-medium items-center">
           <Link to="/">
-            <li className="hidden sm:inline text-slate-700 hover:underline">
+            <li className="hidden sm:inline text-slate-700 hover:underline hover:text-blue-600">
               Home
             </li>
           </Link>
           <Link to="/about">
-            <li className="hidden sm:inline text-slate-700 hover:underline">
+            <li className="hidden sm:inline text-slate-700 hover:underline hover:text-blue-600">
               About
             </li>
           </Link>
           <Link to="/profile">
             {currentUser ? (
               <img
-                className="rounded-full h-7 w-7 object-cover"
+                className="rounded-full sm:h-11 sm:w-11 object-cover ml-10"
                 src={currentUser.avatar}
                 alt="profile"
               />
