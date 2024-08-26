@@ -18,6 +18,7 @@ import {
 } from "../redux/user/userSlice.js";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { FaHome } from "react-icons/fa";
 export default function Profile() {
   const fileRef = useRef(null);
   const { currentUser, loading, error } = useSelector((state) => state.user);
@@ -245,10 +246,17 @@ export default function Profile() {
       <p className="text-green-700 mt-5">
         {updateSuccess ? "User is updated successfully!" : ""}
       </p>
-      <button onClick={handleShowListings} className="text-green-700 w-full">
-        Show Listings
-      </button>
-      <p className="text-red-700 mt-5">
+
+      <div className="grid grid-cols-1 ">
+        <FaHome className="" />
+        <button
+          onClick={handleShowListings}
+          className="text-green-700 w-full font-medium text-2xl "
+        >
+          Show Listings
+        </button>
+      </div>
+      <p className="text-red-700 mt-5 ">
         {showListingsError ? "Error showing listings" : ""}
       </p>
 
