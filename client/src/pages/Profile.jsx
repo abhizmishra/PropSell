@@ -247,15 +247,15 @@ export default function Profile() {
         {updateSuccess ? "User is updated successfully!" : ""}
       </p>
 
-      <div className="grid grid-cols-1 ">
-        <FaHome className="" />
+    
         <button
           onClick={handleShowListings}
-          className="text-green-700 w-full font-medium text-2xl "
+          className=" flex flex-nowrap justify-center items-center text-green-700 w-full font-medium text-2xl "
         >
+          <FaHome className=" mx-1 h-8 w-8 text-green-700  " />
           Show Listings
         </button>
-      </div>
+     
       <p className="text-red-700 mt-5 ">
         {showListingsError ? "Error showing listings" : ""}
       </p>
