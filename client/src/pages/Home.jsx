@@ -76,10 +76,11 @@ export default function Home() {
             <SwiperSlide>
               <div
                 style={{
-                  background: `url(${listing.imageUrls[0]}) center no-repeat`,
+               
+                  background: `url('https://firebasestorage.googleapis.com/v0/b/propsell-25e5c.appspot.com/o/1737450042867pexels-nextvoyage-1481105.jpg?alt=media&token=f1f7a4f4-5e85-43e3-9087-6e7286c76fc8') center no-repeat`,
                   backgroundSize: 'cover',
                 }}
-                className='h-[500px]'
+                className='h-[500px] bg'
                 key={listing._id}
               ></div>
             </SwiperSlide>
