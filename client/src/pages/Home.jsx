@@ -55,7 +55,7 @@ export default function Home() {
           place with ease
         </h1>
         <div className='text-gray-400 text-xs sm:text-sm'>
-         PropSell is the best place to find your next perfect place to
+          Sahand Estate is the best place to find your next perfect place to
           live.
           <br />
           We have a wide range of properties for you to choose from.
@@ -76,7 +76,7 @@ export default function Home() {
             <SwiperSlide>
               <div
                 style={{
-                  background:  'https://firebasestorage.googleapis.com/v0/b/propsell-25e5c.appspot.com/o/1737450042867pexels-nextvoyage-1481105.jpg?alt=media&token=f1f7a4f4-5e85-43e3-9087-6e7286c76fc8) center no-repeat',
+                  background: `url(${listing.imageUrls[0]}) center no-repeat`,
                   backgroundSize: 'cover',
                 }}
                 className='h-[500px]'
